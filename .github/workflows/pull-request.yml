@@ -1,0 +1,20 @@
+name: Pull Request on Github # nome qualquer
+on: [pull_request] # alguma tarefa real do github
+jobs:
+  PullRequest-GitHub:
+    runs-on: ubuntu-latest # máquina no github
+    steps:
+      - name: Check out repository code # nome qualquer
+        uses: actions/checkout@v3 # plugin para copiar meu código para a máquina do Github
+      - name: Make a new envfile # nome qualquer
+        uses: SpicyPizza/create-envfile@v1.3 # plugin para criar um novo arquivo env na máquina do Github
+        with:
+          envkey_PORT: 5000
+          envkey_DATABASE_URL: postgresql://postgres:postgres@postgres:5432/names?schema=public
+          envkey_POSTGRES_USERNAME: postgres
+          envkey_POSTGRES_PASSWORD: postgres
+          envkey_POSTGRES_DB: names
+          directory: back-end
+          file_name: .env.test
+      - name: Run tests # nome qualquer
+        run: docker compose -f docker-compose-test.yml run node npm run test
