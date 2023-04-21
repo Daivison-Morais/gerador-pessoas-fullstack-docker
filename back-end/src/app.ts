@@ -26,6 +26,7 @@ app.get("/all", async (req: Request, res: Response) => {
     const users = await prisma.user.findMany({});
     res.send(users);
   } catch (error) {
+    console.log(error)
     res.status(httpStatus.INTERNAL_SERVER_ERROR).send(error);
   }
 })
