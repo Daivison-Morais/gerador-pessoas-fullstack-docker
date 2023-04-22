@@ -14,7 +14,7 @@ function App() { // jsx
   }
   
   return <>
-    <h1>Register Names 🌞</h1>
+    <h1>Register Names for serasa 🌞</h1>
     <div><Link to="/names">See all names</Link></div>
     <br />
     <button onClick={addNewName}>Add new name</button>
